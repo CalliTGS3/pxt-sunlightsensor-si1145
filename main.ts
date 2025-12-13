@@ -54,7 +54,14 @@ namespace SI1145 {
         basic.pause(10)
     }
 
-    function begin(): void {
+    /**
+     *  Init Sensor    
+     */
+    //% block="Init sensor"
+    //% block.loc.de="Initialisiere Sensor"
+    //% weight=74 blockGap=8
+    //% blockId=init_Sensor
+    export function init(): void {
         reset()
 
         // enable UVindex measurement coefficients!
@@ -78,8 +85,6 @@ namespace SI1145 {
         // auto run
         setreg(0x18, 0x0F);
     }
-
-    begin()
 
     /**
      * Ultra Violet Index
