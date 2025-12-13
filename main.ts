@@ -58,7 +58,7 @@ namespace SI1145 {
      *  Init Sensor    
      */
     //% block="Init sensor"
-    //% block.loc.de="Initialisiere Sensor"
+    //% block.loc.de="Initialisiere Licht Sensor"
     //% weight=74 blockGap=8
     //% blockId=init_Sensor
     export function init(): void {
