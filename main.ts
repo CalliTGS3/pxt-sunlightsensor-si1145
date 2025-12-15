@@ -65,24 +65,45 @@ namespace SI1145 {
         reset()
 
         // enable UVindex measurement coefficients!
-        //setreg(0x13, 0x29);  //0x7B
-        //setreg(0x14, 0x89);  //0x6B
-        //setreg(0x15, 0x02);  //0x01
-        //setreg(0x16, 0x00);  //0x00
+        setreg(0x13, 0x29);  //0x7B
+        setreg(0x14, 0x89);  //0x6B
+        setreg(0x15, 0x02);  //0x01
+        setreg(0x16, 0x00);  //0x00
 
-        setreg(0x13, 0x7B);  //
-        setreg(0x14, 0x6B);  //
-        setreg(0x15, 0x01);  //
-        setreg(0x16, 0x00);  //
-        
         // enable UV sensor
-        // writeParam(0x01, 0x80 | 0x20 | 0x10);
-        writeParam(0x01, 0x80 | 0x20 | 0x10 | 0x01);
+        writeParam(0x01, 0x80 | 0x20 | 0x10);
+        //writeParam(0x01, 0x80 | 0x20 | 0x10 | 0x01);
         
         // enable interrupt on every sample
         setreg(0x03, 0x01);
         setreg(0x04, 0x01);
 
+        // program LED current
+        setreg(0x0F, 0x03); // 20mA for LED 1 only
+        writeParam(0x07, 0x03);
+        // prox sensor #1 uses LED #1
+        writeParam(0x02, 0x01);
+        // fastest clocks, clock div 1
+        writeParam(0x0B, 0);
+        // take 511 clocks to measure
+        writeParam(0x0A, 0x70);
+        // in prox mode, high range
+        writeParam(0x0C, 0x20 | 0x04);
+
+        writeParam(0x0E, 0x00);
+        // fastest clocks, clock div 1
+        writeParam(0x1E, 0);
+        // take 511 clocks to measure
+        writeParam(0x1D, 0x70);
+        // in high range mode
+        writeParam(0x1F, 0x20);
+
+        // fastest clocks, clock div 1
+        writeParam(0x11, 0);
+        // take 511 clocks to measure
+        writeParam(0x10, 0x70);
+        // in high range mode (not normal signal)
+        writeParam(0x12, 0x20);
 
         /************************/
 
